@@ -158,20 +158,33 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/14/My-New-Post/">My New Post</a>
+      <a class="article-title" href="/2015/04/05/My-New-Post/">实例化前后修改原型指向的区别</a>
     </h1>
   
 
         
-        <a href="/2017/03/14/My-New-Post/" class="archive-article-date">
-  	<time datetime="2017-03-14T11:28:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-14</time>
+        <a href="/2015/04/05/My-New-Post/" class="archive-article-date">
+  	<time datetime="2015-04-05T11:28:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-04-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="实例化前后修改原型指向的区别"><a href="#实例化前后修改原型指向的区别" class="headerlink" title="实例化前后修改原型指向的区别"></a>实例化前后修改原型指向的区别</h1><ul>
+<li><strong>在实例化之前修改原型</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">            <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">            <span class="function"><span class="keyword">function</span> <span class="title">Fun</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">            Fun.prototype.flag=<span class="number">555</span>;     <span class="comment">//原始原型中的属性被覆盖</span></div><div class="line">            Fun.prototype=<span class="keyword">new</span> fn();     <span class="comment">//在实例化之前修改原型</span></div><div class="line">            <span class="keyword">var</span> fun=<span class="keyword">new</span> Fun();</div><div class="line"><span class="comment">//            判断</span></div><div class="line">            <span class="built_in">console</span>.log(fun.__proto__ === Fun.prototype);	<span class="comment">//结果是true</span></div><div class="line">            <span class="built_in">console</span>.log(fun <span class="keyword">instanceof</span> Fun);	<span class="comment">//结果是true</span></div><div class="line">            <span class="built_in">console</span>.dir(Fun);</div><div class="line">            <span class="built_in">console</span>.dir(fun);</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>在实例化之后修改原型</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">            <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">            <span class="function"><span class="keyword">function</span> <span class="title">Fun</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">            Fun.prototype.flag=<span class="number">555</span>;     <span class="comment">//原始原型中的属性被覆盖</span></div><div class="line">            <span class="keyword">var</span> fun=<span class="keyword">new</span> Fun();</div><div class="line">            Fun.prototype=<span class="keyword">new</span> fn();     <span class="comment">//在实例化之后修改原型</span></div><div class="line"><span class="comment">//            判断</span></div><div class="line">            <span class="built_in">console</span>.log(fun.__proto__ === Fun.prototype);	<span class="comment">//结果是false</span></div><div class="line">            <span class="built_in">console</span>.log(fun <span class="keyword">instanceof</span> Fun);	<span class="comment">//结果是false</span></div><div class="line">            <span class="built_in">console</span>.dir(Fun);</div><div class="line">            <span class="built_in">console</span>.dir(fun);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>结论</strong></p>
+<ul>
+<li>实例产生之后再修改构造函数的原型，那么对实例中的数据是没有影响的，但是会影响instanceof   (foo instanceof Foo)的判断。</li>
+<li>console.log(foo.<strong>proto</strong> === Foo.prototype);这个结果是true的话， instanceof才是true。</li>
+</ul>
+
       
 
       
@@ -183,7 +196,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/14/My-New-Post/">展开全文 >></a>
+          <a class="article-more-a" href="/2015/04/05/My-New-Post/">展开全文 >></a>
         </p>
       
 
@@ -221,7 +234,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="HTML5-第一天"><a href="#HTML5-第一天" class="headerlink" title="HTML5 第一天"></a>HTML5 第一天</h1><h3 id="H5-简单介绍"><a href="#H5-简单介绍" class="headerlink" title="H5 简单介绍"></a>H5 简单介绍</h3><pre><code>由HTML5、CSS3、JavaScript三部分组成
+        <h3 id="H5-简单介绍"><a href="#H5-简单介绍" class="headerlink" title="H5 简单介绍"></a>H5 简单介绍</h3><pre><code>由HTML5、CSS3、JavaScript三部分组成
 </code></pre><h3 id="1-HTML5中常见语义标签"><a href="#1-HTML5中常见语义标签" class="headerlink" title="1. HTML5中常见语义标签"></a>1. HTML5中常见语义标签</h3><h4 id="header"><a href="#header" class="headerlink" title="header"></a>header</h4><pre><code>nav
 </code></pre><h4 id="main"><a href="#main" class="headerlink" title="main"></a>main</h4><pre><code>aside
 article
